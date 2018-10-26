@@ -12,8 +12,8 @@ Clock with current weather
 	    color: "white", //clock color
 	     size: "1.0em", //font size
              sec: false,  //show seconds
-             wcolor: "yellow", //not in use
-             dcolor: "orange", //not in use
+             wcolor: "yellow",  //weather color
+             dcolor: "orange", //date color
              city: "elmira", //city for weather
              useWet: true //Show weather			 
 			}
