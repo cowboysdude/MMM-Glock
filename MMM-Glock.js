@@ -5,7 +5,7 @@ Module.register("MMM-Glock", {
 	    updateInterval: 15*60*1000,
 		//updateInterval: 5*1000,
 		color: "pink",
-		size: "0.4em",
+		size: "",
         inline: "",
         city: "",
         sec: false,
@@ -72,7 +72,9 @@ Module.register("MMM-Glock", {
 		this.updateInterval = null;
 		this.info = {};
 		this.sendSocketNotification('CONFIG', this.config);
+		if (this.config.useWet != false){
 		this.getStuff();
+		}
         this.Css();
         this.scheduleUpdate();
     },
@@ -105,15 +107,14 @@ Module.register("MMM-Glock", {
     var place = pos[this.data.position];
     var color = this.config.color;
 	var size = this.config.size;
-	console.log("color: "+color+ " size: "+size);
+	//console.log("color: "+color+ " size: "+size);
     var myElement = document.getElementsByClassName('region ' + place)[0];
     myElement.style.cssText = "font-size:"+ size +";color:"+color;   
     }, 
-	
+	 
 	 getStuff: function() {
        this.sendSocketNotification('GET_STUFF');
-	   
-		console.log("updated weather Glock");
+		console.log("updating the weather for MMM-Glock"); 
      },
 
     socketNotificationReceived: function(notification, payload) {
@@ -124,20 +125,18 @@ Module.register("MMM-Glock", {
     },
 	
 	processWet: function(data) {
-        this.info = data;
-        console.log("From ProcessWet "+ payload);		
+        this.info = data;		
     },
 	 
 	
     getDom: function() {  
 		
 		var info = this.info;
-		console.log("From getDom "+ info.temp+ " "+info.text); 
+		//console.log("From getDom "+ info.temp+ " "+info.text); 
         var sec = this.config.sec;
 		var dcolor = this.config.dcolor;
 		var wcolor = this.config.wcolor;
 		var useMe = this.config.useWet;
-		
 
 		setInterval(function() {
 			
@@ -169,10 +168,11 @@ Module.register("MMM-Glock", {
          <div id="date"></div>`;
         wrapper.appendChild(da); 
 		
-	//console.log(show.item.condition.temp);
+	 
         if (useMe != false){  
         var weta = document.createElement("div"); 
-        weta.classList.add('wet');		
+        weta.classList.add('wet');
+        weta.style.color = wcolor;		
 		weta.innerHTML = "<img class = invert src= modules/MMM-Glock/svg/"+this.config.weatherArray[info.code]+".svg>"+ "&nbsp;&nbsp;  " +info.temp+"&deg; " +info.text;
 		console.log(weta.innerHTML);
         wrapper.appendChild(weta);
