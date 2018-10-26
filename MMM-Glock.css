@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+#clock {
+    font-size: 40px;
+	font-family: 'Titillium Web', sans-serif; 
+}
+.wet {
+	font-family: 'Titillium Web', sans-serif;
+    font-size: 22px;
+    color: #ffffff;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.invert {
+	-webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+	width: 16%;
+	height: 16%;
+	}
+#date {
+    font-size: 29px;
+    text-transform: uppercase;
+    margin-top: -14px;
+    color: #5a5a5a;
+}
+
+#date span {
+	font-family: 'Titillium Web', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+#sec {
+    font-size: 30px;
+    margin-top: -14px;
+    font-weight: bold;
+    color: #F44336;
+}
+
+#sec span {
+	font-family: 'Titillium Web', sans-serif;
+    color: #4a4848;
+    font-size: 40px;
+    font-weight: bold;
+}
+.open {
+	 font-family: 'Titillium Web', sans-serif;
+    color: ;
+    font-size: 30px;
+}
