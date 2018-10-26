@@ -2,6 +2,8 @@
 Clock with current weather 
 
 
+![](clock.jpg)
+
         {
 	   disabled: false
             module: 'MMM-Glock',
