@@ -30,7 +30,7 @@ module.exports = NodeHelper.create({
         }, (error, response, body) => {
             if (!error && response.statusCode == 200) {
                 var result = JSON.parse(body).query.results.channel.item.condition;
-                console.log(body);
+                //console.log(body);
                 this.sendSocketNotification('THE_RESULT', result);
             }
         });
