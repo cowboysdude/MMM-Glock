@@ -146,10 +146,10 @@
 				var dateEle = document.getElementById("date")
 				var dt = new Date();
 							
-				if (sec === false) {
-				hourEle.innerHTML = dt.getHours() % 12 + ":" + toTwoDigit(dt.getMinutes()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
+				if (sec === false) { 
+				hourEle.innerHTML = (dt.getHours()% 12 || 12) + ":" + toTwoDigit(dt.getMinutes()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
 				} else {
-				hourEle.innerHTML = dt.getHours() % 12 + ":" + toTwoDigit(dt.getMinutes()) + ":" + toTwoDigit(dt.getSeconds()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
+				hourEle.innerHTML = (dt.getHours()% 12 || 12) + ":" + toTwoDigit(dt.getMinutes()) + ":" + toTwoDigit(dt.getSeconds()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
 				}
 				var d = dt.toString().slice(0, 15);
 				dateEle.style.color = dcolor;
