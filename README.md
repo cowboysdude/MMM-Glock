@@ -5,7 +5,7 @@ Clock with current weather
 ![](clock.jpg)
 
         {
-	   disabled: false
+	   disabled: false,
             module: 'MMM-Glock',
             position: 'top_center',
 	    config: {
