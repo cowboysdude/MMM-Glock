@@ -14,5 +14,6 @@ Yahoo weather has turned off their old api so the weather NO longer works.....ma
              sec: false,  //show seconds
              wcolor: "yellow",  //weather color
              dcolor: "orange", //date color 
-			}
+             useDate: false //Hide date
+	     }
            },
