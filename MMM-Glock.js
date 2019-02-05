@@ -12,6 +12,7 @@
 			dcolor: "orange",
 			wcolor: "purple",
 			useWet: false,
+			useDate: true,
 			
 			
 		 weatherArray : {	
@@ -161,13 +162,21 @@
 			}
 
 			var wrapper = document.createElement("div");
-
-			var da = document.createElement("div");
-			da.innerHTML = 
-			`<div id="clock">
+			
+			
+			var total = `<div id="clock">
 			 <div id="hrMin"></div> 
 			 </div>
 			 <div id="date"></div>`;
+			 
+			 var noDate = `<div id="clock">
+			 <div id="hrMin"></div> 
+			 </div>`;
+
+			var userTime = (this.config.useDate != false) ? total : noDate;
+			
+			var da = document.createElement("div");
+			da.innerHTML = userTime;			 
 			wrapper.appendChild(da); 
 			
 		 
