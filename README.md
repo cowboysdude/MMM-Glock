@@ -1,6 +1,6 @@
 # MMM-Glock
 Clock with current weather 
-
+Yahoo weather has turned off their old api so the weather NO longer works.....may update in the coming days to another provider.
 
 ![](clock.jpg)
 
@@ -13,8 +13,6 @@ Clock with current weather
 	     size: "1.0em", //font size
              sec: false,  //show seconds
              wcolor: "yellow",  //weather color
-             dcolor: "orange", //date color
-             city: "elmira", //city for weather
-             useWet: true //Show weather			 
+             dcolor: "orange", //date color 
 			}
            },
