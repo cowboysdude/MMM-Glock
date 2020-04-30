@@ -4,16 +4,14 @@ Yahoo weather has turned off their old api so the weather NO longer works.....ma
 
 ![](clock.jpg)
 
-        {
-	   disabled: false,
+           {
+            disabled: f,
             module: 'MMM-Glock',
             position: 'top_center',
-	    config: {
-	    color: "white", //clock color
-	     size: "1.0em", //font size
-             sec: false,  //show seconds
-             wcolor: "yellow",  //weather color
-             dcolor: "orange", //date color 
-             useDate: false //Hide date
-	     }
-           },
+            config: {
+            color: "white", //clock color
+            size: "1.0em", //font size
+            sec: true,  //show seconds
+            dcolor: "orange"  //date color 
+            }
+            },
