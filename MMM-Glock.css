@@ -2,21 +2,7 @@
 #clock {
     font-size: 40px;
 	font-family: 'Titillium Web', sans-serif; 
-}
-.wet {
-	font-family: 'Titillium Web', sans-serif;
-    font-size: 22px;
-    color: #ffffff;
-	display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.invert {
-	-webkit-filter: invert(100%); /* Safari/Chrome */
-    filter: invert(100%);
-	width: 16%;
-	height: 16%;
-	}
+} 
 #date {
     font-size: 29px;
     text-transform: uppercase;
