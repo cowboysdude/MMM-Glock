@@ -43,7 +43,6 @@ Module.register("MMM-Glock", {
         var sec = this.config.sec;
         var dcolor = this.config.dcolor;
         var wcolor = this.config.wcolor;
-        var useMe = this.config.useWet;
 
         setInterval(function() {
 
