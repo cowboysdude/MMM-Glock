@@ -1,85 +1,82 @@
+/* MagicMirror²
+ * Module: MMM-Glock
+ * A simple 12-hour clock with the date underneath.
+ * By cowboysdude
+ */
 Module.register("MMM-Glock", {
-    defaults: {
-        color: "pink",
-        size: "",
-        inline: "",
-        sec: false,
-        dcolor: "orange"
-    },
+	defaults: {
+		color: "white",   // clock color
+		size: "1.0em",    // overall size; scales both time and date
+		sec: false,       // show seconds
+		dcolor: "orange", // date color (month and day number stay white)
+		showDate: true    // show the date line
+	},
 
-    start: function() {
-        Log.info("Starting module: " + this.name);
-        this.Css();
-    },
+	start: function () {
+		Log.info("Starting module: " + this.name);
+		this.timeEl = null;
+		this.dateEl = null;
+		this.scheduleTick();
+	},
 
-    getStyles: function() {
-        return ["MMM-Glock.css"];
-    },
+	getStyles: function () {
+		return ["MMM-Glock.css"];
+	},
 
-    Css: function() {
-        var pos = {
-            "top_center": "top center",
-            "bottom_bar": "bottom bar",
-            "top_left": "top left",
-            "top_right": "top right",
-            "top_bar": "top bar",
-            "bottom_left": "bottom left",
-            "bottom_center": "bottom center",
-            "bottom_right": "bottom right",
-            "upper_third": "upper third",
-            "middle_center": "middle center",
-            "lower_third": "lower third"
-        }
-        var place = pos[this.data.position];
-        var color = this.config.color;
-        var size = this.config.size;
-        var myElement = document.getElementsByClassName('region ' + place)[0];
-        myElement.style.cssText = "font-size:" + size + ";color:" + color;
-    },
+	// Update on each whole second so the display never skips or lags.
+	scheduleTick: function () {
+		var self = this;
+		var delay = 1000 - (Date.now() % 1000);
+		this.timer = setTimeout(function () {
+			self.updateClock();
+			self.scheduleTick();
+		}, delay);
+	},
 
-    getDom: function() {
+	updateClock: function () {
+		if (!this.timeEl) {
+			return;
+		}
+		var dt = new Date();
+		var hours = dt.getHours();
+		var text = (hours % 12 || 12) + ":" + this.pad(dt.getMinutes());
+		if (this.config.sec) {
+			text += ":" + this.pad(dt.getSeconds());
+		}
+		text += hours >= 12 ? " PM" : " AM";
+		this.timeEl.textContent = text;
 
-        var info = this.info;
-        var sec = this.config.sec;
-        var dcolor = this.config.dcolor;
-        var wcolor = this.config.wcolor;
+		if (this.dateEl) {
+			var d = dt.toString().slice(0, 15); // e.g. "Tue Nov 24 2026"
+			this.dateEl.innerHTML = d.slice(0, 4) + "<span>" + d.slice(4, 10) + "</span>" + d.slice(10, 15);
+		}
+	},
 
-        setInterval(function() {
+	pad: function (num) {
+		return (num < 10 ? "0" : "") + num;
+	},
 
-            var hourEle = document.getElementById("hrMin")
-            var dateEle = document.getElementById("date")
-            var dt = new Date();
+	getDom: function () {
+		var wrapper = document.createElement("div");
+		wrapper.className = "glock";
+		wrapper.style.color = this.config.color;
+		if (this.config.size) {
+			wrapper.style.fontSize = this.config.size;
+		}
 
-            if (sec === false) {
-                hourEle.innerHTML = (dt.getHours() % 12 || 12) + ":" + toTwoDigit(dt.getMinutes()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
-            } else {
-                hourEle.innerHTML = (dt.getHours() % 12 || 12) + ":" + toTwoDigit(dt.getMinutes()) + ":" + toTwoDigit(dt.getSeconds()) + (dt.getHours() / 12 > 1 ? " P" : " A") + "M";
-            }
-            var d = dt.toString().slice(0, 15);
-            dateEle.style.color = dcolor;
-            dateEle.innerHTML = "<open>" + d.slice(0, 4) + "</open><span>" + d.slice(4, 10) + "</span><open>" + d.slice(10, 15) + "</open>";
-        }, 1000)
+		this.timeEl = document.createElement("div");
+		this.timeEl.className = "glock-time";
+		wrapper.appendChild(this.timeEl);
 
-        function toTwoDigit(num) {
-            return (num < 10 ? "0" : "") + num;
-        }
+		this.dateEl = null;
+		if (this.config.showDate) {
+			this.dateEl = document.createElement("div");
+			this.dateEl.className = "glock-date";
+			this.dateEl.style.color = this.config.dcolor;
+			wrapper.appendChild(this.dateEl);
+		}
 
-        var wrapper = document.createElement("div");
-
-
-        var total = `<div id="clock">
-			 <div id="hrMin"></div> 
-			 </div>
-			 <div id="date"></div>`;
-
-        var noDate = `<div id="clock">
-			 <div id="hrMin"></div> 
-			 </div>`;
-
-        var da = document.createElement("div");
-        da.innerHTML = total;
-        wrapper.appendChild(da);
-
-        return wrapper;
-    },
+		this.updateClock();
+		return wrapper;
+	}
 });
