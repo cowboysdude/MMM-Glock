@@ -2,10 +2,7 @@
 
 A simple 12-hour clock for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror), with the date shown underneath.
 
-```
-3:42:07 PM
-TUE NOV 24 2026
-```
+![MMM-Glock on a MagicMirror](screenshot.png)
 
 - Time in 12-hour format, with or without seconds
 - Date line with the day and year in your accent color and the month and day number in bold white
