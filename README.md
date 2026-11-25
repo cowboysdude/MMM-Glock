@@ -56,10 +56,6 @@ Add this to the `modules` array in `~/MagicMirror/config/config.js`:
 
 The clock can go in any MagicMirror position (`top_left`, `top_center`, `middle_center`, `bottom_bar` and so on), and its colors and size only affect this module.
 
-## Notes
-
-This module used to show the current weather from Yahoo. Yahoo shut down that API, so the weather part has been removed and MMM-Glock is now a clock only. For weather, pair it with a weather module such as [MMM-NOAAV4](https://github.com/cowboysdude/MMM-NOAAV4).
-
 ## Credits
 
 - Font: [Titillium Web](https://fonts.google.com/specimen/Titillium+Web), licensed under the SIL Open Font License 1.1 (see `fonts/OFL.txt`).
